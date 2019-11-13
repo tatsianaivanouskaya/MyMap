@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MyMap</string>
+    <string name="title_map">Map</string>
+    <string name="title_myplaces">My places</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="load_from_file">Загрузка с файла</string>
+    <string name="random_places">Случайные точки</string>
+    <string name="just_image">Just image</string>
+
+</resources>
