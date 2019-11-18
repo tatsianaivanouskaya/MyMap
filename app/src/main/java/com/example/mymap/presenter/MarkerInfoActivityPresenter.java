@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class MarkerInfoActivityPresenter {
 
-    public static final String API_KEY = "FsX0WaMXND5ohbnjGGcwCe6zsm0iPYHH";
+    static final String API_KEY = "FsX0WaMXND5ohbnjGGcwCe6zsm0iPYHH";
 
     private MarkerInfo markerInfo;
     private UserMarkerActivity view;

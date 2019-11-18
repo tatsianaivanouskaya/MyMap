@@ -43,7 +43,7 @@ public class MarkerInfoModel extends Application{
         private Context context;
         MarkerInfo markerInfo;
 
-        public MarkerLoadAsyncTask(Context context, MarkerInfo markerInfo) {
+        MarkerLoadAsyncTask(Context context, MarkerInfo markerInfo) {
             this.context = context;
             this.markerInfo = markerInfo;
         }
@@ -64,7 +64,7 @@ public class MarkerInfoModel extends Application{
         int id;
         MarkerInfo markerInfo;
 
-        public MarkerInfoGetAsyncTask(Context context, int id) {
+        MarkerInfoGetAsyncTask(Context context, int id) {
             this.context = context;
             this.id = id;
         }
@@ -84,7 +84,7 @@ public class MarkerInfoModel extends Application{
 
         private Context context;
 
-        public MarkerListInfoGetAsyncTask(Context context) {
+        MarkerListInfoGetAsyncTask(Context context) {
             this.context = context;
         }
 
