@@ -4,8 +4,6 @@ package com.example.mymap;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.presenter.MarkerInfo;
 import com.example.mymap.presenter.MarkerInfoActivityPresenter;

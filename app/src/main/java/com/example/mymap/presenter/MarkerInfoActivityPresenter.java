@@ -3,7 +3,6 @@ package com.example.mymap.presenter;
 import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.weather.DailyForecast;
@@ -15,7 +14,7 @@ import retrofit2.Response;
 
 public class MarkerInfoActivityPresenter {
 
-    public static final String API_KEY = "yJlzRCkaixI3JwSQTB0FsukaqMvdWgIn";
+    public static final String API_KEY = "FsX0WaMXND5ohbnjGGcwCe6zsm0iPYHH";
 
     private MarkerInfo markerInfo;
     private UserMarkerActivity view;

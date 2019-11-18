@@ -19,13 +19,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener {
 
     private static MapFragment mfInstance;
     private GoogleMap mMap;
     private Button btnLoadFile;
     private Button btnRandom;
-
 
     public MapFragment() { }
 
@@ -77,9 +76,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
         mMap = googleMap;
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnMarkerDragListener(this);
         LatLng minsk = new LatLng(53.902742, 27.561491);
-        mMap.addMarker(new MarkerOptions().position(minsk).title("Минск"));
+        mMap.addMarker(new MarkerOptions().position(minsk).draggable(true));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(minsk));
+
+
     }
 
 
@@ -97,4 +99,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     }
 
 
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+
+    }
 }

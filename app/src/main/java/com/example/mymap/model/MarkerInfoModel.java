@@ -53,7 +53,6 @@ public class MarkerInfoModel extends Application{
         protected Integer doInBackground(Void... params) {
             MarkerInfoDao markerInfoDao = Room.databaseBuilder(context,
                     AppDatabase.class, "database").build().markerInfoDao();
-            Log.d("MARKER", "loadmarker " + markerInfo.toString());
             markerInfoDao.insert(markerInfo);
             return null;
         }
@@ -75,12 +74,7 @@ public class MarkerInfoModel extends Application{
         protected MarkerInfo doInBackground(Void... params) {
             MarkerInfoDao markerInfoDao = Room.databaseBuilder(context,
                     AppDatabase.class, "database").build().markerInfoDao();
-            //List<MarkerInfo> markerInfoList = markerInfoDao.getAll();
-            //int count = markerInfoList.size();
-            //Log.d("MARKER", "listcount " + count);
-            //markerInfo = markerInfoList.get(id);
             markerInfo = markerInfoDao.getById(id);
-            Log.d("MARKER", "getmarker  "+ markerInfo.toString());
 
             return markerInfo;
         }
