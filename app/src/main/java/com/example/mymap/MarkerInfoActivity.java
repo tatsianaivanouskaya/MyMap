@@ -48,10 +48,6 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
         markerInfoActivityPresenter.attachView(this);
         markerInfoActivityPresenter.getMarkerInfo(latitude, longitude);
 
-
-
-
-
     }
 
     @Override
@@ -64,7 +60,7 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
         tvLongitude.setText(markInfo.getLongitude().toString());
         tvCountry.setText(markInfo.getCountry());
         tvCity.setText(markInfo.getAdministrativeArea());
-        tvDate.setText("Погода на " + markerInfo.getDateWeather());
+        tvDate.setText(getResources().getText(R.string.weather_at) + markerInfo.getDateWeather());
         tvMaxTemp.setText(markInfo.getMaxTemp().toString());
         tvMaxTempText.setText(markerInfo.getDayIconPhrase());
         tvMinTemp.setText(markInfo.getMinTemp().toString());
