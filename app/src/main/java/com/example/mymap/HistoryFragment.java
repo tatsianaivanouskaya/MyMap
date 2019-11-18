@@ -24,7 +24,7 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
     public HistoryFragment() {
 
     }
-    public static HistoryFragment newInstance(){
+    static HistoryFragment newInstance(){
         if (hfInstance == null){
             hfInstance = new HistoryFragment();
         }
