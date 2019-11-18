@@ -28,7 +28,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     public MapFragment() { }
 
-    public static MapFragment newInstance(){
+    static MapFragment newInstance(){
         if (mfInstance == null){
             mfInstance = new MapFragment();
         }
