@@ -9,5 +9,6 @@
     <string name="load_from_file">Загрузка с файла</string>
     <string name="random_places">Случайные точки</string>
     <string name="just_image">Just image</string>
+    <string name="weather_at">Погода на </string>
 
 </resources>
