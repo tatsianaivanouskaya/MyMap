@@ -3,7 +3,6 @@ package com.example.mymap.model;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import androidx.room.Room;
 import com.example.mymap.presenter.MarkerInfo;
 import java.util.List;
