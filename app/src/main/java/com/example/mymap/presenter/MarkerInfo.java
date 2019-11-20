@@ -10,13 +10,13 @@ public class MarkerInfo implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private Double latitude;
-    private Double longitude;
+    private String latitude;
+    private String longitude;
     private String country;
     private String administrativeArea;
     private String dateWeather;
-    private Double maxTemp;
-    private Double minTemp;
+    private String maxTemp;
+    private String minTemp;
     private String dayIconPhrase;
     private String nightIconPhrase;
     private String key;
@@ -37,19 +37,19 @@ public class MarkerInfo implements Serializable {
         this.key = key;
     }
 
-    public Double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public Double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
@@ -78,19 +78,19 @@ public class MarkerInfo implements Serializable {
         this.dateWeather = dateWeather;
     }
 
-    public Double getMaxTemp() {
+    public String getMaxTemp() {
         return maxTemp;
     }
 
-    public void setMaxTemp(Double maxTemp) {
+    public void setMaxTemp(String maxTemp) {
         this.maxTemp = maxTemp;
     }
 
-    public Double getMinTemp() {
+    public String getMinTemp() {
         return minTemp;
     }
 
-    public void setMinTemp(Double minTemp) {
+    public void setMinTemp(String minTemp) {
         this.minTemp = minTemp;
     }
 
