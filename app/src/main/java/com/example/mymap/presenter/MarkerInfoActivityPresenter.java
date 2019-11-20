@@ -14,12 +14,12 @@ import retrofit2.Response;
 
 public class MarkerInfoActivityPresenter {
 
-    static final String API_KEY = "FsX0WaMXND5ohbnjGGcwCe6zsm0iPYHH";
+    private static final String API_KEY = "FsX0WaMXND5ohbnjGGcwCe6zsm0iPYHH";
 
     private MarkerInfo markerInfo;
     private UserMarkerActivity view;
     private MarkerInfoModel markerInfoModel;
-    Context context;
+    private Context context;
 
     public MarkerInfoActivityPresenter(Context context) {
         this.context = context;
@@ -50,11 +50,11 @@ public class MarkerInfoActivityPresenter {
                                 try{
                                     com.example.mymap.location.Example example = response.body();
                                     markerInfo = new MarkerInfo();
-                                    markerInfo.setLatitude(latitude);
-                                    markerInfo.setLongitude(longitude);
-                                    markerInfo.setKey(example.getKey());
-                                    markerInfo.setCountry(example.getCountry().getLocalizedName());
-                                    markerInfo.setAdministrativeArea(example.getAdministrativeArea().getLocalizedName());
+                                    markerInfo.setLatitude(latitude.toString());
+                                    markerInfo.setLongitude(longitude.toString());
+                                    markerInfo.setKey(example != null ? example.getKey() : null);
+                                    markerInfo.setCountry(example != null ? example.getCountry().getLocalizedName() : null);
+                                    markerInfo.setAdministrativeArea(example != null ? example.getAdministrativeArea().getLocalizedName() : null);
                                 }catch (Exception e){
                                     Toast.makeText(context, "Нет данных, попробуйте другую точку ;)", Toast.LENGTH_SHORT).show();
                                 }
@@ -81,15 +81,16 @@ public class MarkerInfoActivityPresenter {
                             public void onResponse(Call<com.example.mymap.weather.Example> call, Response<com.example.mymap.weather.Example> response) {
 
                                 com.example.mymap.weather.Example example = response.body();
-                                Headline headline = example.getHeadline();
-                                List<DailyForecast> dailyForecasts = example.getDailyForecasts();
-                                DailyForecast dailyForecast = dailyForecasts.get(0);
-                                markerInfo.setDateWeather(headline.getEffectiveDate());
-                                markerInfo.setMaxTemp(dailyForecast.getTemperature().getMaximum().getValue());
-                                markerInfo.setMinTemp(dailyForecast.getTemperature().getMinimum().getValue());
-                                markerInfo.setDayIconPhrase(dailyForecast.getDay().getIconPhrase());
-                                markerInfo.setNightIconPhrase(dailyForecast.getNight().getIconPhrase());
-
+                                Headline headline = example != null ? example.getHeadline() : null;
+                                List<DailyForecast> dailyForecasts = example != null ? example.getDailyForecasts() : null;
+                                DailyForecast dailyForecast = dailyForecasts != null ? dailyForecasts.get(0) : null;
+                                markerInfo.setDateWeather(headline != null ? headline.getEffectiveDate() : null);
+                                markerInfo.setMaxTemp(dailyForecast != null ? dailyForecast.getTemperature().getMaximum().getValue().toString() : null);
+                                markerInfo.setMinTemp(dailyForecast != null ? dailyForecast.getTemperature().getMinimum().getValue().toString() : null);
+                                markerInfo.setDayIconPhrase(dailyForecast != null ? dailyForecast.getDay().getIconPhrase() : null);
+                                markerInfo.setNightIconPhrase(dailyForecast != null ? dailyForecast.getNight().getIconPhrase() : null);
+                                MarkerInfoModel markerInfoModel = new MarkerInfoModel();
+                                markerInfoModel.setMarker(markerInfo, context);
                                 view.getMarker(markerInfo);
                             }
 
@@ -102,6 +103,7 @@ public class MarkerInfoActivityPresenter {
                 });
             }
         }, 2000);
+
 
      }
 }

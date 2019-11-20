@@ -10,5 +10,12 @@
     <string name="random_places">Случайные точки</string>
     <string name="just_image">Just image</string>
     <string name="weather_at">Погода на </string>
+    <string name="latitude">Широта</string>
+    <string name="longitude">Долгота</string>
+    <string name="country">Страна</string>
+    <string name="day">Днем:</string>
+    <string name="night">Ночью:</string>
+    <string name="lat">ш.</string>
+    <string name="lon">д.</string>
 
 </resources>
