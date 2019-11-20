@@ -2,7 +2,6 @@ package com.example.mymap.presenter;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.ArrayList;
 
 public class MapFagmentPresenter {
