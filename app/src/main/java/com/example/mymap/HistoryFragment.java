@@ -12,14 +12,13 @@ import android.view.ViewGroup;
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.presenter.MarkerAdapter;
 import com.example.mymap.presenter.MarkerInfo;
-
 import java.util.List;
 
 
 public class HistoryFragment extends Fragment implements MarkerAdapter.ClickListener{
 
     private static HistoryFragment hfInstance;
-    MarkerAdapter adapter;
+    private MarkerAdapter adapter;
 
     public HistoryFragment() {
 
