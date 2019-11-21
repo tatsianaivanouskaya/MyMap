@@ -25,7 +25,6 @@
                 android:text="@string/latitude"
                 android:layout_weight="1" />
             <TextView
-                android:id="@+id/tv_latitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -42,7 +41,6 @@
                 android:text="@string/longitude"
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/tv_longitude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -59,7 +57,6 @@
                 android:text="@string/country"
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/tv_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -76,7 +73,6 @@
                 android:text=""
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/tv_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -85,7 +81,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_date"
             android:gravity="center_horizontal"
             android:text="@{markerinfo.dateWeather}"/>
         <TextView
@@ -99,13 +94,11 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
             <TextView
-                android:id="@+id/tv_maxTemp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@{markerinfo.maxTemp}"/>
             <TextView
-                android:id="@+id/tv_maxTempText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -122,13 +115,11 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp">
             <TextView
-                android:id="@+id/tv_minTemp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@{markerinfo.minTemp}"/>
             <TextView
-                android:id="@+id/tv_minTempText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
