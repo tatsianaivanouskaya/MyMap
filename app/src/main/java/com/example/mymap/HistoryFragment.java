@@ -84,9 +84,11 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
                 markerInfoList = new MarkerInfoModel().getMarkerInfoList(viewInflater.getContext());
                 adapter = new MarkerAdapter(markerInfoList,viewInflater.getContext());
                 recyclerView.setAdapter(adapter);
+
                 if (mSwipeRefreshLayout.isRefreshing()){
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
+
 
                 Toast.makeText(viewInflater.getContext(), getResources().getString(R.string.downloaded), Toast.LENGTH_SHORT).show();
 
