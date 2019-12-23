@@ -18,4 +18,6 @@
     <string name="lat">ш.</string>
     <string name="lon">д.</string>
 
+    <string name="downloaded">Downloaded</string>
+
 </resources>

@@ -6,19 +6,28 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.presenter.MarkerAdapter;
 import com.example.mymap.presenter.MarkerInfo;
 import java.util.List;
 
 
-public class HistoryFragment extends Fragment implements MarkerAdapter.ClickListener{
+public class HistoryFragment extends Fragment implements MarkerAdapter.ClickListener, SwipeRefreshLayout.OnRefreshListener{
 
     private static HistoryFragment hfInstance;
     private MarkerAdapter adapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private View viewInflater;
+    private RecyclerView recyclerView;
+    private List<MarkerInfo> markerInfoList;
 
     public HistoryFragment() {
 
@@ -34,15 +43,23 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View viewInflater = inflater.inflate(R.layout.fragment_history, container, false);
+        viewInflater = inflater.inflate(R.layout.fragment_history, container, false);
 
-        RecyclerView recyclerView = viewInflater.findViewById(R.id.recyclerView);
+
+        recyclerView = viewInflater.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(viewInflater.getContext(), LinearLayoutManager.VERTICAL,false));
 
-        List<MarkerInfo> markerInfoList = new MarkerInfoModel().getMarkerInfoList(viewInflater.getContext());
+        markerInfoList = new MarkerInfoModel().getMarkerInfoList(viewInflater.getContext());
         adapter = new MarkerAdapter(markerInfoList,viewInflater.getContext());
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        mSwipeRefreshLayout = viewInflater.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
+                android.R.color.holo_blue_light,
+                android.R.color.holo_purple,
+                android.R.color.holo_orange_light);
 
         return viewInflater;
     }
@@ -56,4 +73,25 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
         startActivity(intent);
 
     }
+
+    @Override
+    public void onRefresh() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                
+                markerInfoList = new MarkerInfoModel().getMarkerInfoList(viewInflater.getContext());
+                adapter = new MarkerAdapter(markerInfoList,viewInflater.getContext());
+                recyclerView.setAdapter(adapter);
+
+                mSwipeRefreshLayout.setRefreshing(false);
+
+                Toast.makeText(viewInflater.getContext(), getResources().getString(R.string.downloaded), Toast.LENGTH_SHORT).show();
+
+            }
+        }, 4000);
+
+    }
+
 }
