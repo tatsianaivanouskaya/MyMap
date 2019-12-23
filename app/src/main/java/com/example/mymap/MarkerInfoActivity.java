@@ -20,6 +20,7 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.progress_bar);
 
         final Double latitude = getIntent().getDoubleExtra(MARKER_LATITUDE, 0.0);
         final Double longitude = getIntent().getDoubleExtra(MARKER_LONGITUDE, 0.0);
