@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.example.mymap.presenter.MapFagmentPresenter;
+import com.example.mymap.presenter.MarkerFromFile;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,7 +40,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View viewInflater = inflater.inflate(R.layout.fragment_map, container, false);
+        final View viewInflater = inflater.inflate(R.layout.fragment_map, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
@@ -53,7 +54,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.btn_loadfile:
-                        //
+                        MarkerFromFile markerFromFile = new MarkerFromFile();
+                        markerFromFile.getMarkerFromFile(viewInflater.getContext());
+                        //mMap.clear();
+                        //mMap.addMarker(markerOptions);
                         break;
                     case R.id.btn_random:
                         ArrayList<MarkerOptions> markerOptionsArrayList = MapFagmentPresenter.getMarkerRandom();
