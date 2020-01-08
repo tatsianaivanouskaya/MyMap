@@ -1,6 +1,7 @@
 package com.example.mymap.presenter;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
@@ -110,4 +111,15 @@ public class MarkerInfo implements Serializable {
         this.nightIconPhrase = nightIconPhrase;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "широта: " + this.latitude + "\n"
+                + "долгота: " + this.longitude + "\n"
+                + "страна: " + this.country + "\n"
+                + "        " + this.administrativeArea + "\n"
+                + "дата: " + this.dateWeather + "\n"
+                + "днем: " + this.maxTemp + " " + this.dayIconPhrase + "\n"
+                + "ночью: " + this.minTemp + " " + this.nightIconPhrase;
+    }
 }

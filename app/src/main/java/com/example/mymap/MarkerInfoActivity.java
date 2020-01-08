@@ -1,11 +1,19 @@
 package com.example.mymap;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.mymap.databinding.ActivityMarkerInfoBinding;
 import com.example.mymap.presenter.MarkerInfo;
@@ -25,6 +33,7 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,12 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
     public void getMarker(MarkerInfo markerInfo) {
         markInfo = markerInfo;
         ActivityMarkerInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_marker_info);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         mSwipeRefreshLayout = findViewById(R.id.swipe_container_marker);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -73,4 +88,19 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
             }
         }, 4000);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.share_provider);
+        ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, markInfo.toString());
+        shareActionProvider.setShareIntent(intent);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
 }

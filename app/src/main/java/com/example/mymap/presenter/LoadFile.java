@@ -28,7 +28,7 @@ public class LoadFile {
 
 
         try {
-            URL url = new URL("https://www.dropbox.com/s/ge593nhe49ttw7q/Munich.txt?dl=0");
+            URL url = new URL("https://www.dropbox.com/s/ge593nhe49ttw7q/Munich.txt");
             BufferedReader read = new BufferedReader(
                     new InputStreamReader(url.openStream()));
             String i;
