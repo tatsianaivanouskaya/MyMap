@@ -2,13 +2,16 @@ package com.example.mymap.presenter;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Toast;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,13 +26,15 @@ public class LoadFromFile extends AppCompatActivity {
     private static final int FILE_SELECT_CODE = 1;
     private String path = null;
 
-    public interface UserMarkerFragment{
-        void getMarkerFromFile (MarkerOptions markerOptions);
+    public interface UserMarkerFragment {
+        void getMarkerFromFile(MarkerOptions markerOptions);
     }
-    public static void attachFragment(UserMarkerFragment userMarkerFragment){
+
+    public static void attachFragment(UserMarkerFragment userMarkerFragment) {
         fragment = userMarkerFragment;
     }
-    public static void detachFragment(){
+
+    public static void detachFragment() {
         fragment = null;
     }
 
@@ -55,13 +60,16 @@ public class LoadFromFile extends AppCompatActivity {
 
                     try {
                         path = FileUtils.getPath(this, uri);
-                    } catch (URISyntaxException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    MarkerOptions markerOptions = getMarkerFromFile();
+                    fragment.getMarkerFromFile(markerOptions);
+                } else{
+                    Toast.makeText(this, "No selected files", Toast.LENGTH_SHORT).show();
                 }
-                MarkerOptions markerOptions = getMarkerFromFile();
-                fragment.getMarkerFromFile(markerOptions);
                 break;
+
         }
         super.onActivityResult(requestCode, resultCode, data);
         finish();

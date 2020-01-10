@@ -4,10 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
-import java.net.URISyntaxException;
-
 public class FileUtils {
-    public static String getPath(Context context, Uri uri) throws URISyntaxException {
+    public static String getPath(Context context, Uri uri)  {
         if ("content".equalsIgnoreCase(uri.getScheme())) {
             String[] projection = { "_data" };
             Cursor cursor = null;
