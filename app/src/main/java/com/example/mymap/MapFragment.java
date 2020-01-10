@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import com.example.mymap.presenter.MapFagmentPresenter;
-import com.example.mymap.presenter.MarkerFromFile;
+import com.example.mymap.presenter.LoadFromFile;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,14 +20,16 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.util.ArrayList;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener {
+public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener, LoadFromFile.UserMarkerFragment {
 
     private static MapFragment mfInstance;
     private GoogleMap mMap;
     private Button btnLoadFile;
     private Button btnRandom;
+    
 
     public MapFragment() { }
 
@@ -36,6 +40,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         return mfInstance;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        LoadFromFile.attachFragment(this);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,9 +64,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.btn_loadfile:
-                        mMap.clear();
-                        MarkerFromFile markerFromFile = new MarkerFromFile();
-                        mMap.addMarker(markerFromFile.getMarkerFromFile());
+                        Intent intent = new Intent(viewInflater.getContext(), LoadFromFile.class);
+                        startActivity(intent);
                         break;
                     case R.id.btn_random:
                         ArrayList<MarkerOptions> markerOptionsArrayList = MapFagmentPresenter.getMarkerRandom();
@@ -117,5 +125,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     @Override
     public void onMarkerDragEnd(Marker marker) {
 
+    }
+
+
+    @Override
+    public void getMarkerFromFile(MarkerOptions markerOptions) {
+        mMap.clear();
+        mMap.addMarker(markerOptions.draggable(true));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(markerOptions.getPosition()));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LoadFromFile.detachFragment();
     }
 }

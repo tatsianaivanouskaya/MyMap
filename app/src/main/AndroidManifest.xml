@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".presenter.MarkerFromFile"></activity>
+        <activity android:name=".presenter.LoadFromFile"></activity>
         <activity
             android:name=".MarkerInfoHistActivity"
             android:parentActivityName=".MainActivity" />

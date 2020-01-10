@@ -2,17 +2,13 @@ package com.example.mymap.presenter;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,29 +17,32 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 
-public class MarkerFromFile extends AppCompatActivity {
+public class LoadFromFile extends AppCompatActivity {
 
+    private static UserMarkerFragment fragment;
     private static final int FILE_SELECT_CODE = 1;
     private String path = null;
+
+    public interface UserMarkerFragment{
+        void getMarkerFromFile (MarkerOptions markerOptions);
+    }
+    public static void attachFragment(UserMarkerFragment userMarkerFragment){
+        fragment = userMarkerFragment;
+    }
+    public static void detachFragment(){
+        fragment = null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
 
-    private void showFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        //intent.setType("*/*");
-        //intent.addCategory(Intent.CATEGORY_OPENABLE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        Intent intentChooser = Intent.createChooser(intent, "Select a File to Upload");
+        startActivityForResult(intentChooser, FILE_SELECT_CODE);
 
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"), FILE_SELECT_CODE);
-        } catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(this, "Please install a File Manager.",
-                    Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -51,31 +50,24 @@ public class MarkerFromFile extends AppCompatActivity {
         switch (requestCode) {
             case FILE_SELECT_CODE:
                 if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
+
                     Uri uri = data.getData();
-                    Log.d("GSON", "File Uri: " + uri.toString());
-                    // Get the path
 
                     try {
                         path = FileUtils.getPath(this, uri);
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
-                    Log.d("GSON", "File Path: " + path);
-                    // Get the file instance
-                    // File file = new File(path);
-                    // Initiate the upload
                 }
+                MarkerOptions markerOptions = getMarkerFromFile();
+                fragment.getMarkerFromFile(markerOptions);
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+        finish();
     }
 
-
-
-    public MarkerOptions getMarkerFromFile(){
-
-        showFileChooser();
+    public MarkerOptions getMarkerFromFile() {
 
         File myFile = new File(path);
 
@@ -89,7 +81,7 @@ public class MarkerFromFile extends AppCompatActivity {
         StringBuilder stringBuilder = new StringBuilder();
         String line = null;
 
-        while (true){
+        while (true) {
             try {
                 if (!((line = bufferedReader.readLine()) != null)) break;
             } catch (IOException e) {
@@ -98,21 +90,12 @@ public class MarkerFromFile extends AppCompatActivity {
             stringBuilder.append(line);
         }
 
-        Log.d("GSON", "load6 " + stringBuilder.toString());
-
-
         Gson gson = new Gson();
         LatLong latLong = gson.fromJson(stringBuilder.toString(), LatLong.class);
-
-        Log.d("GSON", "load7 "  + latLong.toString());
-
         LatLng newMarker = new LatLng(latLong.getLatitude(), latLong.getLongitude());
 
         return new MarkerOptions().position(newMarker);
+
+
     }
-
-
-
-
-
 }
