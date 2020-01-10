@@ -1,32 +1,36 @@
 package com.example.mymap.presenter;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import com.dropbox.core.DbxException;
+import com.example.mymap.model.JavaDropbox;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 public class LoadFile {
 
-    public void downloadFile(Context context) throws IOException {
+    private static final String DROP_BOX_APP_KEY = "4bb5k37cxapx8ok";
+    private static final String DROP_BOX_APP_SECRET = "xsf6gu7fuinuyt7";
 
 
+
+    public void downloadFile() throws IOException {
+
+
+
+
+
+
+
+
+
+
+
+/*JavaDropbox javaDropbox = new JavaDropbox();
+        try {
+            javaDropbox.authDropbox(DROP_BOX_APP_KEY, DROP_BOX_APP_SECRET);
+            javaDropbox.downloadFromDropbox("Munich.txt");
+        } catch (DbxException e) {
+            e.printStackTrace();
+        }*/
+/*
         try {
             URL url = new URL("https://www.dropbox.com/s/ge593nhe49ttw7q/Munich.txt");
             BufferedReader read = new BufferedReader(
@@ -38,8 +42,7 @@ public class LoadFile {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+*/
 /*
         String url = "https://www.dropbox.com/s/ge593nhe49ttw7q/Munich.txt?dl=0";
 
@@ -84,9 +87,6 @@ public class LoadFile {
             // handle exception
 
         }*/
-    }
-}
-
 /*
         String url = "http://www.dropbox.com/s/fvmuwzweq34p56n/Munich.txt?dl=0";
 
@@ -134,8 +134,7 @@ public class LoadFile {
         Log.d("GSON", "load5");
         fos.close();
         bis.close();*/
-
-       /* InputStream is = new FileInputStream(new File(context.getFilesDir(),file));
+/* InputStream is = new FileInputStream(new File(context.getFilesDir(),file));
         BufferedReader buf = new BufferedReader(new InputStreamReader(is));
 
         String line = buf.readLine();
@@ -158,9 +157,14 @@ public class LoadFile {
         LatLong latLong = gson.fromJson(fileAsString, LatLong.class);
 
         Log.d("GSON", "load7 "  + latLong.toString());
-        
+
 
     }
 }*/
+    }
+}
+
+
+
 
 

@@ -99,6 +99,7 @@ public class MarkerInfoActivity extends AppCompatActivity implements MarkerInfoA
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, markInfo.toString());
         shareActionProvider.setShareIntent(intent);
+
         return super.onCreateOptionsMenu(menu);
     }
 

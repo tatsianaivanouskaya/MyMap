@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,10 +55,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.btn_loadfile:
+                        mMap.clear();
                         MarkerFromFile markerFromFile = new MarkerFromFile();
-                        markerFromFile.getMarkerFromFile(viewInflater.getContext());
-                        //mMap.clear();
-                        //mMap.addMarker(markerOptions);
+                        mMap.addMarker(markerFromFile.getMarkerFromFile());
                         break;
                     case R.id.btn_random:
                         ArrayList<MarkerOptions> markerOptionsArrayList = MapFagmentPresenter.getMarkerRandom();
