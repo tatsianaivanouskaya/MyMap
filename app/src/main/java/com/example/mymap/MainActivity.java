@@ -27,11 +27,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
-    private void loadFragment(Fragment fragment){
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fl_content, fragment);
-        ft.commit();
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
+    private void loadFragment(Fragment fragment){
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fl_content, fragment);
+        ft.commit();
+    }
 
 
 
