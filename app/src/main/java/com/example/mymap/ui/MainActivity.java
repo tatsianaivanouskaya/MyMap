@@ -1,4 +1,4 @@
-package com.example.mymap;
+package com.example.mymap.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.mymap.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    private String fragment;
+    private final String FRAGMENT_NAME = "fragment";
 
      BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -18,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()){
                 case R.id.nav_map:
                     loadFragment(MapFragment.newInstance());
+                    fragment = "map";
                     return true;
                 case R.id.nav_hist:
                     loadFragment(HistoryFragment.newInstance());
+                    fragment = "history";
                     return true;
             }
 
@@ -36,8 +41,22 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (savedInstanceState != null){
+            String fragmentName = savedInstanceState.getString(FRAGMENT_NAME);
 
-        loadFragment(MapFragment.newInstance());
+            if(fragmentName.equals("map")){
+                loadFragment(MapFragment.newInstance());
+                fragment = "map";
+            }else{
+                loadFragment(HistoryFragment.newInstance());
+                fragment = "history";
+            }
+        }else {
+            loadFragment(MapFragment.newInstance());
+            fragment = "map";
+        }
+
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     }
@@ -48,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
-
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(FRAGMENT_NAME, fragment);
+    }
 }

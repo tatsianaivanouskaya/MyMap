@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MapFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <data>
+        <variable
+            name="mapfragmentviewmodel"
+            type="com.example.mymap.viewmodel.MapFragmentViewModel" />
+    </data>
+        <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_loadfile"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".ui.MapFragment">
+
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/load_from_file"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/btn_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/random_places"
-            android:layout_weight="1"/>
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_loadfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/load_from_file"
+                android:layout_weight="1"
+                android:onClick="@{mapfragmentviewmodel::onButtonClick}"/>
+            <Button
+                android:id="@+id/btn_random"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/random_places"
+                android:layout_weight="1"
+                android:onClick="@{mapfragmentviewmodel::onButtonClick}"/>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>

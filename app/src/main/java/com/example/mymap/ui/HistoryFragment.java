@@ -1,4 +1,4 @@
-package com.example.mymap;
+package com.example.mymap.ui;
 
 
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.mymap.MarkerInfoHistActivity;
+import com.example.mymap.R;
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.presenter.MarkerAdapter;
 import com.example.mymap.presenter.MarkerInfo;
@@ -29,7 +31,7 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
     private RecyclerView recyclerView;
     private List<MarkerInfo> markerInfoList;
 
-    public HistoryFragment() {
+    private HistoryFragment() {
 
     }
     static HistoryFragment newInstance(){

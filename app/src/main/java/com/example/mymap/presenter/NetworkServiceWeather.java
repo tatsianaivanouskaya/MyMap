@@ -1,5 +1,7 @@
 package com.example.mymap.presenter;
 
+import com.example.mymap.data.network.PlaceHolderWeather;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

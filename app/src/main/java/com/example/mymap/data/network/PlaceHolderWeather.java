@@ -1,4 +1,4 @@
-package com.example.mymap.presenter;
+package com.example.mymap.data.network;
 
 import com.example.mymap.weather.Example;
 import retrofit2.Call;

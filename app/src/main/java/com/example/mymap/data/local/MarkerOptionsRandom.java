@@ -1,12 +1,12 @@
-package com.example.mymap.presenter;
+package com.example.mymap.data.local;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
-public class MapFagmentPresenter {
+public class MarkerOptionsRandom {
 
-    public static ArrayList<MarkerOptions> getMarkerRandom() {
+    public static ArrayList<MarkerOptions> getMarkerOptionsRandom() {
         ArrayList<MarkerOptions> markers = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             Double latitude = (Math.floor(((Math.random() * (90 - (-90))) + (-90)) * 100000)) / 100000;
