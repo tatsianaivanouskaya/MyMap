@@ -7,10 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 import com.example.mymap.presenter.FileUtils;
-import com.example.mymap.presenter.LatLong;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,17 +14,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
-
 public class LoadFromFile extends AppCompatActivity {
 
-    public MarkerOptions markerOptions;
     public static final int FILE_SELECT_CODE = 1;
     private String path = null;
+
     private static LoaderFromFile loader;
 
     public interface LoaderFromFile{
-        void loadFromFile(MarkerOptions markerOptions);
+        void loadFromFile(String coordinates);
     }
     public static void attachToLoader(LoaderFromFile loaderFromFile){
         loader = loaderFromFile;
@@ -44,7 +38,6 @@ public class LoadFromFile extends AppCompatActivity {
         Intent intentChooser = Intent.createChooser(intent, "Select a File to Upload");
         startActivityForResult(intentChooser, FILE_SELECT_CODE);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -64,16 +57,14 @@ public class LoadFromFile extends AppCompatActivity {
                     Toast.makeText(this, "No selected files", Toast.LENGTH_SHORT).show();
                 }
                 break;
-
         }
         super.onActivityResult(requestCode, resultCode, data);
         finish();
     }
 
-    public MarkerOptions getMarkerFromFile() {
+    public String getMarkerFromFile() {
 
         File myFile = new File(path);
-
         FileInputStream inputStream = null;
         try {
             inputStream = new FileInputStream(myFile);
@@ -92,12 +83,8 @@ public class LoadFromFile extends AppCompatActivity {
             }
             stringBuilder.append(line);
         }
+        String coordinates = stringBuilder.toString();
 
-        Gson gson = new Gson();
-        LatLong latLong = gson.fromJson(stringBuilder.toString(), LatLong.class);
-        LatLng newMarker = new LatLng(latLong.getLatitude(), latLong.getLongitude());
-
-        return new MarkerOptions().position(newMarker);
-
+        return coordinates;
     }
 }

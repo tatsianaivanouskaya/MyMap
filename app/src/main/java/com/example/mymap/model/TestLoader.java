@@ -6,9 +6,9 @@ import com.example.mymap.data.local.LoadFromFile;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class TestLoader extends AppCompatActivity implements LoadFromFile.LoaderFromFile {
+public class TestLoader extends AppCompatActivity /*implements LoadFromFile.LoaderFromFile*/ {
 
-    private static MarkerOptions markerOptions;
+    /*private static MarkerOptions markerOptions;
 
     public MarkerOptions getMarkerOptions() {
         return markerOptions;
@@ -23,5 +23,5 @@ public class TestLoader extends AppCompatActivity implements LoadFromFile.Loader
     public void loadFromFile(MarkerOptions markerOptions) {
         this.markerOptions = markerOptions;
 
-    }
+    }*/
 }

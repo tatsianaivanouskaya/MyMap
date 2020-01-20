@@ -19,6 +19,7 @@ import com.example.mymap.R;
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.presenter.MarkerAdapter;
 import com.example.mymap.presenter.MarkerInfo;
+
 import java.util.List;
 
 
@@ -31,7 +32,7 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
     private RecyclerView recyclerView;
     private List<MarkerInfo> markerInfoList;
 
-    private HistoryFragment() {
+    public HistoryFragment() {
 
     }
     static HistoryFragment newInstance(){
