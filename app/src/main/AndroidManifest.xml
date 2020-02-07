@@ -20,10 +20,10 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".data.local.LoadFromFile"></activity>
         <activity
-            android:name=".MarkerInfoHistActivity"
+            android:name=".ui.MarkerInfoHistActivity"
             android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".MarkerInfoActivity"
+            android:name=".ui.MarkerInfoActivity"
             android:parentActivityName=".ui.MainActivity" />
 
         <meta-data

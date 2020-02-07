@@ -4,9 +4,13 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+
+import com.example.mymap.data.network.NetworkServiceLocation;
+import com.example.mymap.data.network.NetworkServiceWeather;
+import com.example.mymap.data.MarkerInfo;
 import com.example.mymap.model.MarkerInfoModel;
-import com.example.mymap.weather.DailyForecast;
-import com.example.mymap.weather.Headline;
+import com.example.mymap.data.network.weather.DailyForecast;
+import com.example.mymap.data.network.weather.Headline;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,11 +48,11 @@ public class MarkerInfoActivityPresenter {
                 NetworkServiceLocation.getInstance()
                         .getJSONApi()
                         .getKey(API_KEY,latlong, "ru-ru", true)
-                        .enqueue(new Callback<com.example.mymap.location.Example>() {
+                        .enqueue(new Callback<com.example.mymap.data.network.location.Example>() {
                             @Override
-                            public void onResponse(Call<com.example.mymap.location.Example> call, Response<com.example.mymap.location.Example> response) {
+                            public void onResponse(Call<com.example.mymap.data.network.location.Example> call, Response<com.example.mymap.data.network.location.Example> response) {
                                 try{
-                                    com.example.mymap.location.Example example = response.body();
+                                    com.example.mymap.data.network.location.Example example = response.body();
                                     markerInfo = new MarkerInfo();
                                     markerInfo.setLatitude(latitude.toString());
                                     markerInfo.setLongitude(longitude.toString());
@@ -61,7 +65,7 @@ public class MarkerInfoActivityPresenter {
                             }
 
                             @Override
-                            public void onFailure(@NonNull Call<com.example.mymap.location.Example> call, @NonNull Throwable t) {
+                            public void onFailure(@NonNull Call<com.example.mymap.data.network.location.Example> call, @NonNull Throwable t) {
                                 t.printStackTrace();
                             }
                         });
@@ -76,11 +80,11 @@ public class MarkerInfoActivityPresenter {
                 NetworkServiceWeather.getInstance()
                         .getJSONApi()
                         .getHeadline(markerInfo.getKey(),API_KEY,"ru-ru", true)
-                        .enqueue(new Callback<com.example.mymap.weather.Example>() {
+                        .enqueue(new Callback<com.example.mymap.data.network.weather.Example>() {
                             @Override
-                            public void onResponse(Call<com.example.mymap.weather.Example> call, Response<com.example.mymap.weather.Example> response) {
+                            public void onResponse(Call<com.example.mymap.data.network.weather.Example> call, Response<com.example.mymap.data.network.weather.Example> response) {
 
-                                com.example.mymap.weather.Example example = response.body();
+                                com.example.mymap.data.network.weather.Example example = response.body();
                                 Headline headline = example != null ? example.getHeadline() : null;
                                 List<DailyForecast> dailyForecasts = example != null ? example.getDailyForecasts() : null;
                                 DailyForecast dailyForecast = dailyForecasts != null ? dailyForecasts.get(0) : null;
@@ -95,7 +99,7 @@ public class MarkerInfoActivityPresenter {
                             }
 
                             @Override
-                            public void onFailure(@NonNull Call<com.example.mymap.weather.Example> call, @NonNull Throwable t) {
+                            public void onFailure(@NonNull Call<com.example.mymap.data.network.weather.Example> call, @NonNull Throwable t) {
 
                                 t.printStackTrace();
                             }

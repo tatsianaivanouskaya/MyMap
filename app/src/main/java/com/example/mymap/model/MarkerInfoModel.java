@@ -4,7 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import androidx.room.Room;
-import com.example.mymap.presenter.MarkerInfo;
+
+import com.example.mymap.data.MarkerInfo;
+import com.example.mymap.data.db.AppDatabase;
+import com.example.mymap.data.db.MarkerInfoDao;
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 

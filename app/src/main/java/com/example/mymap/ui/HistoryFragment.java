@@ -14,11 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.mymap.MarkerInfoHistActivity;
 import com.example.mymap.R;
 import com.example.mymap.model.MarkerInfoModel;
 import com.example.mymap.presenter.MarkerAdapter;
-import com.example.mymap.presenter.MarkerInfo;
+import com.example.mymap.data.MarkerInfo;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.mymap.data.network;
 
-import com.example.mymap.weather.Example;
+import com.example.mymap.data.network.weather.Example;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

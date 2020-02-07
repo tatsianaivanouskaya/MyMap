@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mymap.R;
+import com.example.mymap.data.MarkerInfo;
+
 import java.util.List;
 
 public class MarkerAdapter extends RecyclerView.Adapter<MarkerAdapter.ViewHolder> {

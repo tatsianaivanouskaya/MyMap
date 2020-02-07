@@ -10,10 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.mymap.MarkerInfoActivity;
 import com.example.mymap.R;
 import com.example.mymap.data.local.LoadFromFile;
 import com.example.mymap.databinding.FragmentMapBinding;
@@ -105,12 +106,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Context context = getActivity();
-        Double markerLatitude = marker.getPosition().latitude;
-        Double markerLongitude = marker.getPosition().longitude;
-        Intent intent = new Intent(context, MarkerInfoActivity.class);
-        intent.putExtra(MarkerInfoActivity.MARKER_LATITUDE, markerLatitude);
-        intent.putExtra(MarkerInfoActivity.MARKER_LONGITUDE, markerLongitude);
+        String coordinates = marker.getPosition().latitude + "," + marker.getPosition().longitude;
+        Intent intent = new Intent(getActivity(), MarkerInfoActivity.class);
+        intent.putExtra(MarkerInfoActivity.MARKER_LATLONG, coordinates);
+        Log.d("GSON", coordinates);
         startActivity(intent);
         return true;
     }
