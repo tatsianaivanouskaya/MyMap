@@ -19,7 +19,7 @@ import com.example.mymap.R;
 import com.example.mymap.data.local.LoadFromFile;
 import com.example.mymap.databinding.FragmentMapBinding;
 import com.example.mymap.viewmodel.MapFragmentViewModel;
-import com.example.mymap.viewmodel.MapFragmentViewModelInterface;
+import com.example.mymap.model.MapFragmentRepositoryInterface;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback,
-        GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener, MapFragmentViewModelInterface,LoadFromFile.LoaderFromFile {
+        GoogleMap.OnMarkerClickListener, GoogleMap.OnMarkerDragListener, MapFragmentRepositoryInterface,LoadFromFile.LoaderFromFile {
 
     private static MapFragment mfInstance;
     private GoogleMap mMap;

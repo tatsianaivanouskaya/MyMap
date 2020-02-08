@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.mymap.R;
 import com.example.mymap.model.MapFragmentRepository;
 import com.example.mymap.data.local.LatLong;
+import com.example.mymap.model.MapFragmentRepositoryInterface;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class MapFragmentViewModel extends ViewModel {
 
-    public MapFragmentViewModelInterface mapFragmentViewModelListener;
+    public MapFragmentRepositoryInterface mapFragmentViewModelListener;
     public MutableLiveData<MarkerOptions> markerOptionsLiveData = new MutableLiveData();
 
     public void onButtonClick(View view) {

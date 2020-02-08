@@ -27,6 +27,7 @@ public class MarkerInfoActivity extends AppCompatActivity implements SwipeRefres
     private ActivityMarkerInfoBinding binding;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private String coordinates;
+    private MarkerInfo markInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class MarkerInfoActivity extends AppCompatActivity implements SwipeRefres
             @Override
             public void onChanged(MarkerInfo markerInfo) {
                binding.setMarkerinfo(markerInfo);
+               markInfo = markerInfo;
+               viewModel.setMarker(markInfo);
             }
         });
 
@@ -65,6 +68,7 @@ public class MarkerInfoActivity extends AppCompatActivity implements SwipeRefres
                     @Override
                     public void onChanged(MarkerInfo markerInfo) {
                        binding.setMarkerinfo(markerInfo);
+                       markInfo = markerInfo;
                     }
                 });
                 if (mSwipeRefreshLayout.isRefreshing()){
@@ -74,12 +78,12 @@ public class MarkerInfoActivity extends AppCompatActivity implements SwipeRefres
 
             }
         }, 4000);
+        viewModel.setMarker(markInfo);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
         MenuItem menuItem = menu.findItem(R.id.share_provider);
         ShareActionProvider shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
         Intent intent = new Intent(Intent.ACTION_SEND);

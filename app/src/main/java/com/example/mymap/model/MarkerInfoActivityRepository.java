@@ -1,8 +1,11 @@
 package com.example.mymap.model;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.example.mymap.data.MarkerInfo;
+import com.example.mymap.data.db.MarkerLoadAsyncTask;
 
 public class MarkerInfoActivityRepository implements MarkerInfoActivityRepositoryInterface{
 
@@ -26,5 +29,10 @@ public class MarkerInfoActivityRepository implements MarkerInfoActivityRepositor
     @Override
     public void loadMarkerInfo(MarkerInfo markerInfo) {
         markerInfoMutableLiveData.setValue(markerInfo);
+    }
+
+    public void setMarker(MarkerInfo markerInfo, Context context){
+
+        new MarkerLoadAsyncTask(context, markerInfo).execute();
     }
 }
