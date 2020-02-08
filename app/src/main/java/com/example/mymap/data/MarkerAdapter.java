@@ -1,4 +1,4 @@
-package com.example.mymap.presenter;
+package com.example.mymap.data;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mymap.R;
-import com.example.mymap.data.MarkerInfo;
-
 import java.util.List;
 
 public class MarkerAdapter extends RecyclerView.Adapter<MarkerAdapter.ViewHolder> {
