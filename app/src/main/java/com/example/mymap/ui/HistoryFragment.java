@@ -69,9 +69,8 @@ public class HistoryFragment extends Fragment implements MarkerAdapter.ClickList
 
     @Override
     public void onItemClick(int position, View view) {
-        markInfo = HistoryFragmentRepository.getInstance().getMarker(viewInflater.getContext(), position + 1);
         Intent intent = new Intent(getActivity(), MarkerInfoHistActivity.class);
-        intent.putExtra("Editing", markInfo);
+        intent.putExtra("Editing", position + 1);
         startActivity(intent);
     }
 
